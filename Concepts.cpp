@@ -103,6 +103,30 @@ void printNodeAtLevelRev(node *ptr, int level){	//right to left
 }
 
 
+void printEachLevelInNewLine(node *ptr){
+	//Method 1 : using printNodeAtLevel()
+	//Method 2 : below
+
+	queue<node*> q;
+	q.push(ptr);
+	while(!q.empty()){
+		int sz = q.size();
+		while(sz--){
+			node *x = q.front();
+			q.pop();
+			cout<<x->data<<' ';
+			if(x->left){
+				q.push(x->left);
+			}
+			if(x->right){
+				q.push(x->right);
+			}
+		}
+		cout<<endl;
+	}
+
+}
+
 int main(){
 
 	int n = 10;
@@ -111,9 +135,11 @@ int main(){
 	}
 	inOrder(root);nl;
 
-	for(int i=1 ; i<=4 ; i++){
-		printNodeAtLevelRev(root, i);nl;
-	}
-	
+	// for(int i=1 ; i<=4 ; i++){
+	// 	printNodeAtLevelRev(root, i);nl;
+	// }
+		
+	printEachLevelInNewLine(root);
+
 	return 0;
 }
